@@ -1,6 +1,0 @@
-% creating interactive crop image tool
-
-img = imread("D:\comp_vision\Computer_Vision_Project-master\images\resting_bitch_face.jpg");
-cropped_img = imcrop(img,[ 75, 77, 130, 112]);
-subplot(1,2,1)
-imshow = img
