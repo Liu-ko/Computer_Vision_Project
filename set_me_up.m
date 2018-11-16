@@ -21,7 +21,7 @@ function [A, hist, target, tar_hist] = set_me_up()
         a{i} = imresize(A{i}, [x, y]); 
     end
     
-    A = a
+    A = a;
     %get all the histograms
     [x, num] = size(A);
     hist = cell(1, num);
