@@ -20,9 +20,9 @@ i = imread("D:\comp_vision\Computer_Vision_Project-master\images\out_manmade_1k\
     
     totpxi = numel(i);
     totpximg = numel( nimg );
-    %disp('input:');
-    %disp(totpxi);
-    %disp('output');
-    %disp(totpximg);
+    disp('input:');
+    disp(totpxi);
+    disp('output');
+    disp(totpximg);
     r = nimg;
 end
