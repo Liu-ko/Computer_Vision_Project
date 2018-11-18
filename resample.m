@@ -1,9 +1,9 @@
-function r = resample()
-i = imread("D:\comp_vision\Computer_Vision_Project-master\images\out_manmade_1k\out_natural_1k\sun_adttjkmojmfrsozw.jpg");
+function r = resample(i)
+%i = imread("D:\comp_vision\Computer_Vision_Project-master\images\out_manmade_1k\out_natural_1k\sun_adttjkmojmfrsozw.jpg");
 
     img = imgaussfilt(i);
-    interpolant = griddedInterpolant(double(img))
-    [sx, sy, sz] = size(img)
+    interpolant = griddedInterpolant(double(img));
+    [sx, sy, sz] = size(img);
     nx = (0:5/3:sx)';
     ny = (0:5/3:sy)';
     nz = (1:sz)';
@@ -18,11 +18,11 @@ i = imread("D:\comp_vision\Computer_Vision_Project-master\images\out_manmade_1k\
     %subplot(1, 2, 2);
     %imshow(nimg);
     
-    totpxi = numel(i);
-    totpximg = numel( nimg );
-    disp('input:');
-    disp(totpxi);
-    disp('output');
-    disp(totpximg);
+    %totpxi = numel(i);
+    %totpximg = numel( nimg );
+    %disp('input:');
+    %disp(totpxi);
+    %disp('output');
+    %disp(totpximg);
     r = nimg;
 end

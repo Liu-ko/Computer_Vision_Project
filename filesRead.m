@@ -8,5 +8,6 @@ function y = filesRead(folder)
         y{k} = imread(strcat(folder, files(k).name));
         waitbar(k/numfiles, f, "Loading training set");
     end
-    waitbar(100, f, "Training set loaded successfully");
+    close(f);
+    msgbox("Training set loaded successfully");
 end
