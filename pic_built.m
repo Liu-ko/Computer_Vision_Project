@@ -1,4 +1,4 @@
-function rez = pic_built(T, A, tileResX, tileResY, tileY, tileX)
+function rez = pic_built(T, A, tileResX, tileResY, tileX, tileY)
     [aa, num] = size(A);
     %block sizes
     x = tileResX;

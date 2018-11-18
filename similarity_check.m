@@ -1,4 +1,5 @@
 function rez = similarity_check(I, T)
+%image then sources
     [something, num] = size(T);
   
     rez = zeros(1, num);
