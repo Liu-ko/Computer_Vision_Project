@@ -1,4 +1,4 @@
-function [map, hog, f, entr] = getFeatures()
+function [map, edgy] = getFeatures()
 img = imread("D:\comp_vision\Images\mosaic_target1.jpg");
 %get colormap
 [i, map] =rgb2ind(img, 256);
@@ -13,4 +13,8 @@ f = fft(img);
 i = rgb2gray(img);
 entr = entropyfilt(i);
 
+
+%edge detection
+i = rgb2gray(img);
+edgy = edge(i, 'canny');
 end
