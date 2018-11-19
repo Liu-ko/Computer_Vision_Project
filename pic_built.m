@@ -3,7 +3,7 @@ function rez = pic_built(T, A, tileResX, tileResY, tileX, tileY)
     %block sizes
     x = tileResX;
     y = tileResY;
-    f = waitbar(0, "Generating mosaic");    
+    f = waitbar(0, "Generating composite image");    
     for i = 1:tileX
         for j = 1:tileY
             %disp("" + i + " " + j);
@@ -14,7 +14,7 @@ function rez = pic_built(T, A, tileResX, tileResY, tileX, tileY)
             rez((i-1)*x+1:i*x, (j-1)*y+1:j*y, :) = A{index};
             %waitbar((i*tileY+j)/(tileY * tileX), f, "Generating mosaic");
         end
-        waitbar(i/tileX, f, "Generating mosaic");
+        waitbar(i/tileX, f, "Generating composite image");
     end
     close(f);
 end

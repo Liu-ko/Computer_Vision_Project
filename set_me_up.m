@@ -1,12 +1,13 @@
-function [A, hist, target, tar_hist, manmade] = set_me_up(target_image, source_images, resX, resY, tileX, tileY)
+function [A, hist, target, tar_hist, manmade] = set_me_up(target_image, manmade_source_images, natural_source_images, resX, resY, tileX, tileY)
     %load the pictures
-    A = source_images;
+    A = manmade_source_images;
+    B = natural_source_images;
     target = imread(target_image);
     
     %here we create an array of labels
     %we use 0 for "manmade" and 1 for "natural"
     manmade = zeros(size(A));
-    %natural = ones(size(B));
+    natural = ones(size(B));
    
     % sizes
     pixX = resX;
