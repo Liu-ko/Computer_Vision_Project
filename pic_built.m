@@ -28,4 +28,5 @@ function rez = pic_built(T, A, tileResX, tileResY, tileX, tileY)
         waitbar(i/tileX, f, "Generating composite image");
     end
     close(f);
+    %imwrite(rez, "Images\composite_image_1.jpg");
 end

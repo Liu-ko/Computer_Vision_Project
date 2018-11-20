@@ -4,13 +4,13 @@ function y = filesRead(folder)
     numfiles = length(files);
     y = cell(1, numfiles);
     if numfiles > 0
-        f = waitbar(0, "Loading training set");
+        f = waitbar(0, "Loading image set");
         for k = 1:numfiles
             y{k} = imread(strcat(folder, files(k).name));
-            waitbar(k/numfiles, f, "Loading training set");
+            waitbar(k/numfiles, f, "Loading image set");
         end
         close(f);
-        msgbox("Training set loaded successfully");
+        msgbox("Image set loaded successfully");
     else 
         msgbox("Provided folder does not contain any images");
     end
