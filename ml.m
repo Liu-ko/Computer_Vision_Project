@@ -18,8 +18,15 @@ function m = ml(labels)
         for idx = 1:numel(edgy)
             el = e(idx);
         end
+    end
    
     %creating&training the ml model
-    model = fitcknn([m, e],labels,'NumNeighbors',5,'Standardize',1, 'CrossVal', 'on');
+    %model = fitcknn([m, e],labels,'NumNeighbors',5,'Standardize',1, 'CrossVal', 'on');
     
+    A = filesRead('Images\manmade_training\out_manmade_1k\');
+      
+    %testing
+    l = find_largest(A);
+    disp(max(l))
+    disp("baszd meg");
 end

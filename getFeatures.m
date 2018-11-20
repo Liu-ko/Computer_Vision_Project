@@ -1,5 +1,5 @@
 function [map, edgy] = getFeatures()
-img = imread("D:\comp_vision\Images\mosaic_target1.jpg");
+img = imread("Images\mosaic_target1.jpg");
 %get colormap
 [i, map] =rgb2ind(img, 256);
 
