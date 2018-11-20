@@ -1,4 +1,5 @@
 function [hog] = getFeatures(img) 
+
 %get colormap
 [i, map] =rgb2ind(img, 256);
 

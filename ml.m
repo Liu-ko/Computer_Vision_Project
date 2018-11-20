@@ -39,5 +39,5 @@ function m = ml(labels)
    disp("ml start")
     %creating&training the ml model
     model = fitcknn(features,transpose(labels),'NumNeighbors',5,'Standardize',1, 'CrossVal', 'on')
-    
+
 end
