@@ -7,12 +7,14 @@ function rez = similarity_check(T, S, means, bins, hog)
     Img_mean = mean_calculation(T);  
     Img_bins = RGB_bins(T);
     Img_hog = extractHOGFeatures(T);
+    %Img_texture = feature_box(T);
     
     aaa = euclid(Img_mean, means);
     bbb = euclid(Img_bins, bins);
     ccc = euclid(Img_hog, hog);
+    %ddd = euclid(Img_texture, texture);
     
-    rez = (aaa.*bbb.*ccc);
+    rez = (aaa + bbb + ccc);
 
     %find the most similar mean
     %for z = 1:num

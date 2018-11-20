@@ -4,14 +4,16 @@ function rez = pic_built(T, A, tileResX, tileResY, tileX, tileY)
     x = tileResX;
     y = tileResY;
     
-    %get values: mean color, rgb historgam via bins, HOG 
+    %get values: mean color, rgb historgam via bins, HOG, texture
     means = cell(1, num);
     bins = cell(1, num);
     hog = cell(1, num);
+    %texture = cell(1, num);
     for z = 1:num
         means{z} = mean_calculation(A{z});
         bins{z} = RGB_bins(A{z});
         hog{z} = extractHOGFeatures(A{z});
+        %texture{z} = feature_box(A{z});
     end  
     
     f = waitbar(0, "Generating composite image");    
