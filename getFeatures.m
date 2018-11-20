@@ -1,4 +1,4 @@
-function [hog] = getFeatures(img) 
+function matr = getFeatures(img) 
 
 %get colormap
 [i, map] =rgb2ind(img, 256);
@@ -17,4 +17,6 @@ entr = entropyfilt(i);
 %edge detection
 i = rgb2gray(img);
 edgy = edge(i, 'canny');
+
+matr = {hog, edgy};
 end
