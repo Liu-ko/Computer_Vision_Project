@@ -1,27 +1,23 @@
-function rez = similarity_check(I, T)
-%image then sources
-    [something, num] = size(T);
+function rez = similarity_check(T, S, means, bins, hog)
+%target then sources
+    [something, num] = size(S);
   
     rez = zeros(1, num);
         
-    %get mean values
-    means = cell(1, num);
-    for z = 1:num
-        means{z} = mean_calculation(T{z});
-    end  
-    I_mean = mean_calculation(I);  
+    Img_mean = mean_calculation(T);  
+    Img_bins = RGB_bins(T);
+    Img_hog = extractHOGFeatures(T);
     
-    %piece_hist = calculate_RGB_hist(that_piece);
-    %find the most similar mean
-    for z = 1:num
-        the_mean = means{z};
-        %the_hist = hist{z};
-        rez(z) = sqrt(sum((I_mean - the_mean).^ 2));
+    aaa = euclid(Img_mean, means);
+    bbb = euclid(Img_bins, bins);
+    ccc = euclid(Img_hog, hog);
+    
+    rez = (aaa.*bbb.*ccc);
 
-        %histogram shait
-        %e1 = sum((piece_hist(:,:,1) - the_hist(:,:,1)).^ 2);                
-        %e2 = sum((piece_hist(:,:,2) - the_hist(:,:,2)).^ 2);
-        %e3 = sum((piece_hist(:,:,3) - the_hist(:,:,3)).^ 2);
-        %aaa(z) = sqrt(e1+e2+e3);
-    end    
+    %find the most similar mean
+    %for z = 1:num
+    %    the_mean = means{z};
+        %the_hist = hist{z};
+    %    rez(z) = sqrt(sum((Img_mean - the_mean).^ 2));
+    %end    
 end
