@@ -6,17 +6,15 @@ function m = ml()
     natural = filesRead(".\Images\out_natural_1k\");
     
     for i = 1:numel(manmade)
-       manmade{i} = imresize(manmade{i}, [ 50 50]); 
-       natural{i} = imresize(natural{i}, [ 50 50]);
+       manmade{i} = imresize(manmade{i}, [ 180 180]); 
+       natural{i} = imresize(natural{i}, [ 180 180]);
     end    
     
     manlabels = ones(size(manmade));
     natlabels = zeros(size(natural));
-    mFeatures = getAllFeatures(manmade);
-    nFeatures = getAllFeatures(natural);
     
     natman = [manmade, natural];
-    labels = [manlabels, natlabels];
+    labels = transpose([manlabels, natlabels]);
     
     features = getAllFeatures(natman);
 %     sizem = size(map);
@@ -38,14 +36,14 @@ function m = ml()
 %     end
    disp("ml start")
     %creating&training the ml model
-    model = fitcknn(features,transpose(labels),'NumNeighbors',5,'Standardize',1);
-    
+    model = fitcknn(features,labels,'NumNeighbors',10, 'Standardize', 1, 'OptimizeHyperparameters', 'auto')
+    saveCompactModel(model, 'baszomalassan');
     %predicting with model on test set
     T = filesRead(".\Images\out_manmade_1k\out_manmade_1k\");
     U = filesRead(".\Images\out_natural_1k\out_natural_1k\");
     for i = 1:numel(T)
-       T{i} = imresize(T{i}, [ 50 50]);
-       U{i} = imresize(U{i}, [ 50 50]);
+       T{i} = imresize(T{i}, [ 180 180]);
+       U{i} = imresize(U{i}, [ 180 180]);
     end
     t = getAllFeatures(T);
     u = getAllFeatures(U);
@@ -57,7 +55,8 @@ function m = ml()
     groundLabels = ones(size(T));
     groundLabelsU = zeros(size(U));
     
-    gL = [groundLabels; groundLabelsU];
+    gL = transpose([groundLabels groundLabelsU]);
     cp = classperf(gL,outLabels)
-
+    [cm, order] = confusionmat(gL, outLabels)
+    
 end
