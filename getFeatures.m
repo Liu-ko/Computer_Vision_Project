@@ -4,7 +4,7 @@ function matr = getFeatures(img)
 [i, map] =rgb2ind(img, 256);
 
 %get HOG
-hog = extractHOGFeatures(img);
+hog = normalize(extractHOGFeatures(img));
 
 %fourier transform
 %f = fft(img);
@@ -29,7 +29,7 @@ sum = 0;
     green = mean2(greenChannel());
     blue = mean2(blueChannel());
 
-bins= RGB_bins(img);
+bins= normalize(RGB_bins(img));
 %matr = [hog bins red green blue];
 
 e = transpose(edgy(:));

@@ -36,7 +36,7 @@ function m = ml()
 %     end
    disp("ml start")
     %creating&training the ml model
-    model = fitcknn(features,labels,'NumNeighbors',10, 'Standardize', 1, 'OptimizeHyperparameters', 'auto')
+    model = fitcknn(features,labels,'NumNeighbors',10, 'Standardize', 1)
     saveCompactModel(model, 'baszomalassan');
     %predicting with model on test set
     T = filesRead(".\Images\out_manmade_1k\out_manmade_1k\");
