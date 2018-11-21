@@ -36,27 +36,29 @@ function m = ml()
 %     end
    disp("ml start")
     %creating&training the ml model
-    model = fitcknn(features,labels,'NumNeighbors',10, 'Standardize', 1)
-    saveCompactModel(model, 'baszomalassan');
+    for i = 3:20
+            n = i
+            model = fitcknn(features,labels,'NumNeighbors',n, 'Standardize', 1)
+    %saveCompactModel(model, 'baszomalassan');
     %predicting with model on test set
-    T = filesRead(".\Images\out_manmade_1k\out_manmade_1k\");
-    U = filesRead(".\Images\out_natural_1k\out_natural_1k\");
-    for i = 1:numel(T)
-       T{i} = imresize(T{i}, [ 180 180]);
-       U{i} = imresize(U{i}, [ 180 180]);
+            T = filesRead(".\Images\out_manmade_1k\out_manmade_1k\");
+            U = filesRead(".\Images\out_natural_1k\out_natural_1k\");
+            for i = 1:numel(T)
+               T{i} = imresize(T{i}, [ 180 180]);
+               U{i} = imresize(U{i}, [ 180 180]);
+            end
+            t = getAllFeatures(T);
+            u = getAllFeatures(U);
+
+            v = [t; u];
+            outLabels = predict(model, v);
+            rloss = resubLoss(model)
+
+            groundLabels = ones(size(T));
+            groundLabelsU = zeros(size(U));
+
+            gL = transpose([groundLabels groundLabelsU]);
+            cp = classperf(gL,outLabels)
+            [cm, order] = confusionmat(gL, outLabels)
     end
-    t = getAllFeatures(T);
-    u = getAllFeatures(U);
-    
-    v = [t; u];
-    outLabels = predict(model, v);
-    rloss = resubLoss(model)
-    
-    groundLabels = ones(size(T));
-    groundLabelsU = zeros(size(U));
-    
-    gL = transpose([groundLabels groundLabelsU]);
-    cp = classperf(gL,outLabels)
-    [cm, order] = confusionmat(gL, outLabels)
-    
 end
