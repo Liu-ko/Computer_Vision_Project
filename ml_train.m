@@ -63,5 +63,6 @@ function ml_train(imgWidth, imgHeight, numNeighbours, distance, manTrainingSet, 
     compTime = timer ./ (numel(manmade) + numel(natural));
     msg = sprintf('NumNeighbours: %d\nDistance: %s\nImage Size: %dx%d\n\nComputation Time: %1.4fs per image\nAccuracy: %2.2f%%\nError Rate: %2.2f%%\n', numNeighbours, distance, imgWidth, imgHeight, compTime, (cp.CorrectRate * 100), (cp.ErrorRate * 100));
     msgbox(msg);
-    uitable('Data', cm, 'Position', [15 350 400 60], 'ColumnName', {'Predicted Manmade', 'Predicted Natural'}, 'RowName', {'Actual Manmade', 'Actual Natural'});
+    f = figure('Name', 'Confusion Matrix');
+    uitable(f, 'Data', cm, 'Position', [15 350 400 60], 'ColumnName', {'Predicted Manmade', 'Predicted Natural'}, 'RowName', {'Actual Manmade', 'Actual Natural'})
 end
