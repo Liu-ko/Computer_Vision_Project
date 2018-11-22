@@ -37,7 +37,7 @@ function ml_train(imgWidth, imgHeight, numNeighbours, distance, manTrainingSet, 
        U{i} = imresize(U{i}, [ imgHeight imgWidth]);
     end
     close(m);
-    m = msgbox('Extracting features from training images');
+    m = msgbox('Extracting features from test images');
     t = getAllFeatures(T);
     u = getAllFeatures(U);
     close(m);
@@ -45,7 +45,9 @@ function ml_train(imgWidth, imgHeight, numNeighbours, distance, manTrainingSet, 
     v = [t; u];
     
     m = msgbox('Predicting image classes');
+    tic
     outLabels = predict(model, v);
+    timer = toc
     rloss = resubLoss(model)
 
     groundLabels = ones(size(T));
@@ -59,7 +61,8 @@ function ml_train(imgWidth, imgHeight, numNeighbours, distance, manTrainingSet, 
     [cm, order] = confusionmat(gL, outLabels)
     close(m);
     
-    compTime = 0.4657;
+    compTime = timer ./ size(v);
     msg = sprintf('NumNeighbours: %d\nDistance: %s\nImage Size: %dx%d\n\nComputation Time: %1.4fs\nAccuracy: %2.2f%%\nError Rate: %2.2f%%', numNeighbours, distance, imgWidth, imgHeight, compTime, (cp.CorrectRate * 100), (cp.ErrorRate * 100));
     msgbox(msg);
+    msg = "";
 end
